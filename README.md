@@ -1,8 +1,8 @@
-# Azentrix Full-Stack Task 2 - Multi-User Task Management System (mini Trello)
+# Mini Trello - Multi-User Task Management System
 
-This repository contains the complete implementation for **Task 2: Multi-User Task Management System (mini Trello)** built for the Azentrix Full-Stack Developer Intern task assignment.
+This repository contains the complete implementation for **Multi-User Task Management System (mini Trello)**
 
-The codebase consists of an **Express.js API server** (`backend/`) and a completely fresh, premium **React 19 + Vite + Tailwind CSS client** (`frontend2/`) designed from the ground up to replace the original boilerplate.
+The codebase consists of an **Express.js API server** (`backend/`) and a completely fresh, premium **React 19 + Vite + Tailwind CSS client** (`frontend/`) designed from the ground up to replace the original boilerplate.
 
 ---
 
@@ -10,7 +10,6 @@ The codebase consists of an **Express.js API server** (`backend/`) and a complet
 
 - **Backend Live Server URL:** _(Provide Vercel/Render URL here)_
 - **Frontend Web Application URL:** _(Provide Vercel/Render URL here)_
-- **Loom Video Walkthrough:** _(Provide loom.com video URL here)_
 
 ---
 
@@ -29,7 +28,7 @@ To avoid standard boilerplate pollution, all API interactions and state changes 
 
 ### 2. High-Fidelity Responsive Design
 
-Designed using the Azentrix Digital Services colors (`#ef2b2d` branding red, dark `#0a0a0a` background, and light `#ffffff` enterprise SaaS palette):
+Designed using the colors (`#ef2b2d` branding red, dark `#0a0a0a` background, and light `#ffffff` enterprise SaaS palette):
 
 - Implements responsive containers matching the layout perfectly across all devices (Mobile `320px` to Ultra-wide Desktop `1920px`) with zero horizontal scrolling.
 - Incorporates dynamic dark/light theme switching stored in `localStorage` and synchronized via Tailwind's `class` document selectors.
@@ -69,7 +68,7 @@ Follow these quick steps to launch the local fullstack development environment:
    ```bash
    npm install
    ```
-3. Set up the `.env` file (refer to the [Backend README](https://github.com/karthiks-dev/azentrix-fullstack-task2/blob/main/backend/README.md))
+3. Set up the `.env` file (refer to the [Backend README](https://github.com/bhargav2006/mini-trello/blob/main/backend/README.md))
 4. Launch the developer server:
    ```bash
    npm run dev

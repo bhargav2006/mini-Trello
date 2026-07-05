@@ -1,6 +1,6 @@
-# Azentrix Mini Trello - React Frontend (frontend)
+# Mini Trello - React Frontend (frontend)
 
-This is the completely redesigned, premium React frontend dashboard application built for the **Azentrix mini trello** workspace. It incorporates the company's branding color palette, modern glassmorphism panels, and custom React hooks for business logic separation.
+This is the completely redesigned, premium React frontend dashboard application built for the **mini trello** workspace. It incorporates the company's branding color palette, modern glassmorphism panels, and custom React hooks for business logic separation.
 
 ---
 
@@ -27,7 +27,7 @@ Ensure you have the following installed:
 
 ## ⚙️ Development Proxy Setup
 
-Vite is pre-configured in [vite.config.js](file:///d:/Internships/Agentrix/azentrix-fullstack-task2/frontend/vite.config.js) to proxy `/api` and `/socket.io` traffic to the backend server.
+Vite is pre-configured in [vite.config.js](mini-Trello/frontend/vite.config.js) to proxy `/api` and `/socket.io` traffic to the backend server.
 Ensure your backend is running on port `5000`. If running elsewhere, update the target in `vite.config.js`:
 
 ```javascript

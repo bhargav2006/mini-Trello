@@ -1,6 +1,6 @@
-# Azentrix Mini Trello - Backend API Server (backend)
+# Mini Trello - Backend API Server (backend)
 
-This is the lightweight, collaborative backend server built to power the **Azentrix mini trello** workspace. It provides secure JWT authentication, user role management, RESTful task APIs, and instant updates via WebSockets (Socket.IO).
+This is the lightweight, collaborative backend server built to power the **Mini trello** workspace. It provides secure JWT authentication, user role management, RESTful task APIs, and instant updates via WebSockets (Socket.IO).
 
 ---
 
