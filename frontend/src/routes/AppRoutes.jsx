@@ -1,13 +1,13 @@
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import ProtectedRoute from './ProtectedRoute';
-import AdminRoute from './AdminRoute';
-import LoginPage from '../pages/LoginPage';
-import RegisterPage from '../pages/RegisterPage';
-import DashboardPage from '../pages/DashboardPage';
-import ProfilePage from '../pages/ProfilePage';
-import UserManagementPage from '../pages/UserManagementPage';
-import MainLayout from '../layouts/MainLayout';
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
+import AdminRoute from "./AdminRoute";
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
+import DashboardPage from "../pages/DashboardPage";
+import ProfilePage from "../pages/ProfilePage";
+import UserManagementPage from "../pages/UserManagementPage";
+import MainLayout from "../layouts/MainLayout";
 
 export default function AppRoutes() {
   return (

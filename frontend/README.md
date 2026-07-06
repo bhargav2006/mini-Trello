@@ -1,15 +1,15 @@
-# Mini Trello - React Frontend (frontend)
+# KB Task Board - React Frontend (frontend)
 
-This is the completely redesigned, premium React frontend dashboard application built for the **mini trello** workspace. It incorporates the company's branding color palette, modern glassmorphism panels, and custom React hooks for business logic separation.
+This is the redesigned React frontend dashboard application built for the **KB Task Board** workspace. It uses a KB logo treatment, modern glassmorphism panels, and custom React hooks for business logic separation.
 
 ---
 
 ## 🚀 Key Features
 
-- **Branded Interface Design:** Inspired by the company website with dynamic animations, glowing network node loops, custom dark/light theme systems, and responsive viewport sizing.
+- **Interface Design:** Dynamic animations, glowing network node loops, custom dark/light theme systems, and responsive viewport sizing.
 - **Separation of Concerns:** Zero business logic in presentation components. State management, REST APIs, and socket synchronization are entirely managed via React Contexts and hooks (`useTasks`, `useUsers`, `useActivity`).
 - **Interactive Kanban Board:** Draggable task cards, column highlights, inline actions, search query filters, priority badges, assignee tags, and due date countdown indicators.
-- **Immersive Authorization layouts:** Split-layout login and register views featuring glowing corporate grid lines and glassmorphic card overlays.
+- **Immersive Authorization layouts:** Split-layout login and register views featuring glowing grid lines and glassmorphic card overlays.
 - **Admin Controls workspace:** Responsive tables for administrative audits, search queries, role adjustments, and team member delete locks.
 - **Productivity Feed Sidebar:** Right side panel tracking real-time activity socket feeds, closest upcoming deadlines, and quick tasks shortcuts.
 

@@ -19,7 +19,7 @@ export function SocketProvider({ children }) {
       return;
     }
 
-    const token = localStorage.getItem("azentrix_token");
+    const token = localStorage.getItem("mini_trello_token");
 
     // Connect to same origin, Vite dev server handles proxy to backend at localhost:5000
     const socket = io(

@@ -12,7 +12,7 @@ const api = axios.create({
 // Request interceptor: attach token dynamically from localStorage
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("azentrix_token");
+    const token = localStorage.getItem("mini_trello_token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -26,8 +26,8 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem("azentrix_token");
-      localStorage.removeItem("azentrix_user");
+      localStorage.removeItem("mini_trello_token");
+      localStorage.removeItem("mini_trello_user");
 
       // Auto-redirect to login if not already there or registering
       if (
