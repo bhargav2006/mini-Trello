@@ -8,11 +8,11 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/api": {
-        target: "https://azentrix-fullstack-task2-6mn2.onrender.com",
+        target: "https://mini-trello-mxhs.onrender.com",
         changeOrigin: true,
       },
       "/socket.io": {
-        target: "https://azentrix-fullstack-task2-6mn2.onrender.com",
+        target: "https://mini-trello-mxhs.onrender.com",
         ws: true,
         changeOrigin: true,
       },
