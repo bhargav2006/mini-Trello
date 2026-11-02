@@ -20,32 +20,48 @@ import {
 } from "lucide-react";
 import toast from "react-hot-toast";
 
-export default function AuthPage({ initialMode = "login" }) {
+/**
+ * Unified AuthPage (Single Page for Login & Register)
+ * - Sign In Mode: Text content on LEFT side, Form on RIGHT side
+ * - Register Mode: Form on LEFT side, Text content on RIGHT side
+ * - Smooth in-page 60fps sliding animation without full page reload or unmounting
+ * - Headline styling uses exact portfolio identity (.portfolio-name-gradient)
+ * - 3D Ambient Ribbon background flowing continuously in the background
+ */
+export default function AuthPage({ initialMode }) {
   const { login, register } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Mode: 'login' or 'register'
-  const [mode, setMode] = useState(() => {
-    if (location.pathname === "/register") return "register";
-    if (location.pathname === "/login") return "login";
-    return initialMode;
+  // Mode: boolean isRegister (true = Register, false = Sign In)
+  const [isRegister, setIsRegister] = useState(() => {
+    if (initialMode) return initialMode === "register";
+    return (
+      window.location.pathname === "/register" ||
+      location.pathname === "/register"
+    );
   });
 
-  // Synchronize mode when browser URL/history changes
-  useEffect(() => {
-    if (location.pathname === "/register" && mode !== "register") {
-      setMode("register");
-    } else if (location.pathname === "/login" && mode !== "login") {
-      setMode("login");
-    }
-  }, [location.pathname, mode]);
+  // Handle mode switch with smooth in-page sliding (NO full page reload)
+  const handleModeChange = (registerMode) => {
+    if (registerMode === isRegister) return;
+    setIsRegister(registerMode);
 
-  const switchMode = (newMode) => {
-    if (newMode === mode) return;
-    setMode(newMode);
-    navigate(newMode === "register" ? "/register" : "/login", { replace: false });
+    // Update browser URL smoothly without triggering React Router unmount
+    const newPath = registerMode ? "/register" : "/login";
+    window.history.replaceState(null, "", newPath);
   };
+
+  // Sync state if user clicks browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const isReg = window.location.pathname === "/register";
+      setIsRegister(isReg);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   // =====================
   // LOGIN FORM STATE
@@ -168,8 +184,6 @@ export default function AuthPage({ initialMode = "login" }) {
     { value: "admin", label: "Board Administrator" },
   ];
 
-  const isRegister = mode === "register";
-
   return (
     <div className="min-h-screen relative flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-bg text-textPrimary transition-colors duration-300 overflow-x-hidden">
       {/* 3D Flowing Ambient Ribbon Background Canvas */}
@@ -185,21 +199,21 @@ export default function AuthPage({ initialMode = "login" }) {
       </div>
 
       {/* ========================================================
-          SLIDING DUAL-PANEL AUTH CONTAINER
-          Desktop: 50/50 animated sliding panels
-          - Login Mode: Form on RIGHT, Showcase on LEFT
-          - Click Register: Form moves RIGHT-TO-LEFT to left side!
-          - Click Login: Form moves LEFT-TO-RIGHT back to right side!
+          DESKTOP DUAL-PANEL CONTAINER (True Panel Position Swap)
+          - Sign In: Text on LEFT, Form on RIGHT
+          - Register: Form on LEFT, Text on RIGHT
+          - Smooth 60fps sliding transform on the exact same page!
           ======================================================== */}
-      <div className="relative w-full max-w-[1060px] min-h-[640px] rounded-3xl overflow-hidden border border-border bg-surface/90 backdrop-blur-xl shadow-2xl z-10 my-8">
+      <div className="relative w-full max-w-[1060px] min-h-[660px] rounded-3xl overflow-hidden border border-border bg-surface/90 backdrop-blur-xl shadow-2xl z-10 my-8">
         
-        {/* DESKTOP VIEWPORT (> md): True 2-Way Sliding Motion */}
-        <div className="hidden md:block relative w-full min-h-[640px]">
+        {/* DESKTOP VIEWPORT (hidden on mobile) */}
+        <div className="hidden md:block relative w-full min-h-[660px]">
           
-          {/* ==================================================
-              PANEL 1: THE BRANDING / SHOWCASE PANEL (50% Width)
-              Moves from LEFT to RIGHT when switching to Register
-              ================================================== */}
+          {/* ====================================================
+              PANEL 1: THE TEXT / BRANDING PANEL (50% Width)
+              - In Sign In: Positioned on LEFT (translateX(0%))
+              - In Register: Positioned on RIGHT (translateX(100%))
+              ==================================================== */}
           <div
             className={`absolute top-0 bottom-0 left-0 w-1/2 p-10 lg:p-14 flex flex-col justify-between bg-surface-sunken/80 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] z-10 ${
               isRegister
@@ -207,14 +221,14 @@ export default function AuthPage({ initialMode = "login" }) {
                 : "translate-x-0 border-r border-border"
             }`}
           >
-            {/* Grid background simulation */}
+            {/* Design System Grid Pattern */}
             <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-            {/* Glowing Accent Dots */}
+            {/* Ambient Dots */}
             <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-primary rounded-full shadow-[0_0_20px_var(--color-primary)] animate-pulse-subtle pointer-events-none" />
             <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-primary/60 rounded-full shadow-[0_0_15px_var(--color-primary)] animate-float pointer-events-none" />
 
-            {/* Top Brand Logo */}
+            {/* Brand Logo Header */}
             <div className="flex items-center gap-3 relative z-10">
               <div className="w-10 h-10 rounded-full overflow-hidden border border-border shadow-md shrink-0">
                 <img
@@ -228,23 +242,14 @@ export default function AuthPage({ initialMode = "login" }) {
               </span>
             </div>
 
-            {/* Dynamic Center Content based on Mode */}
-            <div className="my-auto py-8 relative z-10 transition-opacity duration-500">
+            {/* Dynamic Center Text Content */}
+            <div className="my-auto py-8 relative z-10 transition-opacity duration-400">
               {!isRegister ? (
-                /* LOGIN SHOWCASE */
+                /* SIGN IN TEXT CONTENT (Visible when Text is on LEFT) */
                 <div className="animate-fade-in">
-                  <h1 className="text-3xl lg:text-4xl font-black font-display leading-tight tracking-tight text-textPrimary">
+                  <h1 className="text-3xl lg:text-4xl font-extrabold font-display leading-tight tracking-tight text-textPrimary">
                     Build Your{" "}
-                    <span
-                      className="font-black"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, var(--color-primary), var(--color-tertiary))",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        display: "inline-block",
-                      }}
-                    >
+                    <span className="portfolio-name-gradient font-extrabold">
                       Workspace
                     </span>
                   </h1>
@@ -275,20 +280,20 @@ export default function AuthPage({ initialMode = "login" }) {
                       <p className="text-[11px] font-semibold text-textSubtle uppercase tracking-wider">
                         Design
                       </p>
-                      <p className="text-lg font-bold font-display mt-0.5 text-tertiary">
+                      <p className="text-lg font-bold font-display mt-0.5 text-primary">
                         Verdant
                       </p>
                     </div>
                   </div>
 
-                  {/* Quick Action Prompt to slide to Register */}
-                  <div className="mt-8 p-4 rounded-xl bg-surface/70 border border-border">
+                  {/* Switch to Register CTA */}
+                  <div className="mt-8 p-4 rounded-xl bg-surface/75 border border-border shadow-sm">
                     <p className="text-xs text-textSecondary">
                       Don't have an account yet?
                     </p>
                     <button
                       type="button"
-                      onClick={() => switchMode("register")}
+                      onClick={() => handleModeChange(true)}
                       className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-hover transition-colors group cursor-pointer"
                     >
                       <span>Create your account</span>
@@ -300,20 +305,11 @@ export default function AuthPage({ initialMode = "login" }) {
                   </div>
                 </div>
               ) : (
-                /* REGISTER SHOWCASE */
+                /* REGISTER TEXT CONTENT (Visible when Text is on RIGHT) */
                 <div className="animate-fade-in">
-                  <h1 className="text-3xl lg:text-4xl font-black font-display leading-tight tracking-tight text-textPrimary">
+                  <h1 className="text-3xl lg:text-4xl font-extrabold font-display leading-tight tracking-tight text-textPrimary">
                     Join the{" "}
-                    <span
-                      className="font-black"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, var(--color-primary), var(--color-tertiary))",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        display: "inline-block",
-                      }}
-                    >
+                    <span className="portfolio-name-gradient font-extrabold">
                       Collective
                     </span>
                   </h1>
@@ -337,14 +333,14 @@ export default function AuthPage({ initialMode = "login" }) {
                     </div>
                   </div>
 
-                  {/* Quick Action Prompt to slide to Login */}
-                  <div className="mt-8 p-4 rounded-xl bg-surface/70 border border-border">
+                  {/* Switch to Sign In CTA */}
+                  <div className="mt-8 p-4 rounded-xl bg-surface/75 border border-border shadow-sm">
                     <p className="text-xs text-textSecondary">
                       Already registered with us?
                     </p>
                     <button
                       type="button"
-                      onClick={() => switchMode("login")}
+                      onClick={() => handleModeChange(false)}
                       className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-hover transition-colors group cursor-pointer"
                     >
                       <span>Sign in to your workspace</span>
@@ -364,22 +360,21 @@ export default function AuthPage({ initialMode = "login" }) {
             </div>
           </div>
 
-          {/* ==================================================
+          {/* ====================================================
               PANEL 2: THE FORM PANEL (50% Width)
-              - In Login: Sits on RIGHT (translateX(100%))
-              - In Register: Moves from RIGHT to LEFT (translateX(0%))
-              Smooth, hardware-accelerated 60fps sliding motion!
-              ================================================== */}
+              - In Sign In: Positioned on RIGHT (translateX(100%))
+              - In Register: Positioned on LEFT (translateX(0%))
+              When switching: Form slides smoothly between Left and Right!
+              ==================================================== */}
           <div
             className={`absolute top-0 bottom-0 left-0 w-1/2 p-8 lg:p-14 flex flex-col justify-center bg-surface transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] z-20 overflow-y-auto ${
               isRegister ? "translate-x-0" : "translate-x-full"
             }`}
           >
-            {/* Slideable Form Container */}
             <div className="w-full max-w-md mx-auto">
               {!isRegister ? (
                 /* ========================
-                   LOGIN FORM
+                   SIGN IN FORM (On RIGHT side)
                    ======================== */
                 <div className="animate-fade-in">
                   <div className="mb-6">
@@ -437,7 +432,7 @@ export default function AuthPage({ initialMode = "login" }) {
                     Don't have an account?{" "}
                     <button
                       type="button"
-                      onClick={() => switchMode("register")}
+                      onClick={() => handleModeChange(true)}
                       className="font-bold text-primary hover:underline hover:text-primary-hover transition-colors cursor-pointer ml-1"
                     >
                       Register here
@@ -446,7 +441,7 @@ export default function AuthPage({ initialMode = "login" }) {
                 </div>
               ) : (
                 /* ========================
-                   REGISTER FORM
+                   REGISTER FORM (On LEFT side)
                    ======================== */
                 <div className="animate-fade-in">
                   <div className="mb-5">
@@ -541,7 +536,7 @@ export default function AuthPage({ initialMode = "login" }) {
                     Already have an account?{" "}
                     <button
                       type="button"
-                      onClick={() => switchMode("login")}
+                      onClick={() => handleModeChange(false)}
                       className="font-bold text-primary hover:underline hover:text-primary-hover transition-colors cursor-pointer ml-1"
                     >
                       Sign in here
@@ -555,7 +550,6 @@ export default function AuthPage({ initialMode = "login" }) {
 
         {/* ========================================================
             MOBILE VIEWPORT (< md): Smooth Carousel Slide Transition
-            Maintains the same right-to-left and left-to-right gesture!
             ======================================================== */}
         <div className="block md:hidden p-6 sm:p-8">
           {/* Mobile Top Brand Header */}
@@ -577,7 +571,7 @@ export default function AuthPage({ initialMode = "login" }) {
             <div className="flex rounded-lg bg-surface-sunken p-1 border border-border text-xs font-bold">
               <button
                 type="button"
-                onClick={() => switchMode("login")}
+                onClick={() => handleModeChange(false)}
                 className={`px-3 py-1 rounded-md transition-all ${
                   !isRegister
                     ? "bg-primary text-white shadow-sm"
@@ -588,7 +582,7 @@ export default function AuthPage({ initialMode = "login" }) {
               </button>
               <button
                 type="button"
-                onClick={() => switchMode("register")}
+                onClick={() => handleModeChange(true)}
                 className={`px-3 py-1 rounded-md transition-all ${
                   isRegister
                     ? "bg-primary text-white shadow-sm"
@@ -664,7 +658,7 @@ export default function AuthPage({ initialMode = "login" }) {
                   Don't have an account?{" "}
                   <button
                     type="button"
-                    onClick={() => switchMode("register")}
+                    onClick={() => handleModeChange(true)}
                     className="font-bold text-primary hover:underline hover:text-primary-hover cursor-pointer ml-1"
                   >
                     Register here
@@ -764,7 +758,7 @@ export default function AuthPage({ initialMode = "login" }) {
                   Already have an account?{" "}
                   <button
                     type="button"
-                    onClick={() => switchMode("login")}
+                    onClick={() => handleModeChange(false)}
                     className="font-bold text-primary hover:underline hover:text-primary-hover cursor-pointer ml-1"
                   >
                     Sign in here

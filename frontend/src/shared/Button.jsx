@@ -7,6 +7,7 @@ export default function Button({
   variant = 'primary',
   size = 'md',
   isLoading = false,
+  loading = false,
   disabled = false,
   onClick,
   className = '',
@@ -14,6 +15,7 @@ export default function Button({
   style = {},
   ...props
 }) {
+  const isBusy = isLoading || loading;
   const baseStyle = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:opacity-50 disabled:cursor-not-allowed select-none';
 
   const variants = {
@@ -41,13 +43,13 @@ export default function Button({
   return (
     <button
       type={type}
-      disabled={disabled || isLoading}
+      disabled={disabled || isBusy}
       onClick={onClick}
       style={dynamicStyle}
       className={`${baseStyle} ${variants[variant] || variants.primary} ${sizes[size] || sizes.md} ${className}`}
       {...props}
     >
-      {isLoading ? (
+      {isBusy ? (
         <Loader2 className="h-4 w-4 animate-spin text-current" />
       ) : Icon ? (
         <Icon className="h-4 w-4 text-current" />

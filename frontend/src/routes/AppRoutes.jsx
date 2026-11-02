@@ -2,8 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminRoute from "./AdminRoute";
-import LoginPage from "../pages/LoginPage";
-import RegisterPage from "../pages/RegisterPage";
+import AuthPage from "../pages/AuthPage";
 import DashboardPage from "../pages/DashboardPage";
 import ProfilePage from "../pages/ProfilePage";
 import UserManagementPage from "../pages/UserManagementPage";
@@ -12,9 +11,10 @@ import MainLayout from "../layouts/MainLayout";
 export default function AppRoutes() {
   return (
     <Routes>
-      {/* Public/Auth routes */}
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
+      {/* Public/Auth unified sliding routes */}
+      <Route path="/login" element={<AuthPage initialMode="login" />} />
+      <Route path="/register" element={<AuthPage initialMode="register" />} />
+      <Route path="/auth" element={<AuthPage initialMode="login" />} />
 
       {/* Workspace Protected routes */}
       <Route element={<ProtectedRoute />}>

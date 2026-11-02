@@ -138,3 +138,21 @@ html.dark {
   transform: scale(0.99);
   transition: all 200ms ease;
 }
+
+/* Portfolio exact title gradient (white-to-green identity) */
+.portfolio-name-gradient {
+  background: linear-gradient(135deg, #163630 15%, #0F766E 65%, #2D8A74 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.dark .portfolio-name-gradient,
+[data-theme="dark"] .portfolio-name-gradient {
+  background: linear-gradient(135deg, #EAECEB 20%, #42946A 75%, #709686 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 20px rgba(66, 148, 106, 0.22));
+}
