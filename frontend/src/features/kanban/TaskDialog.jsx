@@ -149,7 +149,7 @@ export default function TaskDialog({
         />
 
         <div className="flex flex-col gap-1.5 w-full">
-          <label className="text-xs font-semibold tracking-wider text-[#64748b] dark:text-gray-400 uppercase">
+          <label className="text-xs font-semibold tracking-wider text-textSecondary uppercase">
             Description
           </label>
           <textarea
@@ -158,7 +158,7 @@ export default function TaskDialog({
             onChange={handleChange}
             rows={3}
             placeholder="Add structured details regarding the task goals..."
-            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 dark:border-gray-800 text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#ef2b2d]/30 bg-transparent text-gray-900 dark:text-gray-100 resize-none focus:border-[#ef2b2d] dark:focus:border-[#ef2b2d]"
+            className="w-full px-4 py-2.5 rounded-lg border border-border text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20 bg-surface text-textPrimary resize-none hover:border-control-border focus:border-primary"
             disabled={isSubmitting}
           />
         </div>
@@ -205,7 +205,7 @@ export default function TaskDialog({
           />
         </div>
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-gray-800/80 mt-6">
+        <div className="flex justify-end gap-3 pt-4 border-t border-border mt-6">
           <Button variant="secondary" onClick={onClose} disabled={isSubmitting}>
             Cancel
           </Button>

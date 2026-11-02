@@ -2,8 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/kb_logo.jpg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0F766E" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0E1111" media="(prefers-color-scheme: dark)" />
 
     <title>KB Task Board</title>
 
@@ -27,7 +33,7 @@
 
     <meta property="og:type" content="website" />
 
-    <meta property="og:image" content="./src/assets/kb_logo.jpg" />
+    <meta property="og:image" content="/assets/bhargav-kb-logo-circular.png" />
 
     <meta property="og:site_name" content="Mini Trello" />
 
@@ -40,7 +46,7 @@
       name="twitter:description"
       content="Multi-User Task Management System (mini Trello)" />
 
-    <meta name="twitter:image" content="./src/assets/kb_logo.jpg" />
+    <meta name="twitter:image" content="/assets/bhargav-kb-logo-circular.png" />
 
     <!-- Google Fonts: Inter and Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -48,9 +54,26 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet" />
+
+    <!-- Immediate synchronous theme boot to prevent FOUC / unstyled flash -->
+    <script>
+      (function () {
+        const stored = localStorage.getItem("mini_trello_theme");
+        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = stored === "light" || stored === "dark" ? stored : (systemDark ? "dark" : "light");
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.setAttribute("data-theme", theme);
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
   </head>
   <body
-    class="antialiased selection:bg-[#ef2b2d] selection:text-white transition-colors duration-200">
+    class="antialiased selection:bg-primary/20 selection:text-primary transition-colors duration-200">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

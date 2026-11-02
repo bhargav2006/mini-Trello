@@ -10,10 +10,50 @@ export default function AnalyticsSummary({ tasks }) {
   const rate = total > 0 ? Math.round((completed / total) * 100) : 0;
 
   const cards = [
-    { label: 'Total Tasks', value: total, icon: ClipboardList, color: 'text-[#64748b] bg-gray-50 dark:bg-gray-800' },
-    { label: 'To Do', value: todo, icon: Clock, color: 'text-amber-500 bg-amber-50 dark:bg-amber-950/10 border-amber-100 dark:border-amber-950/20' },
-    { label: 'In Progress', value: inProgress, icon: Activity, color: 'text-blue-500 bg-blue-50 dark:bg-blue-950/10 border-blue-100 dark:border-blue-950/20' },
-    { label: 'Completed', value: completed, icon: CheckCircle, color: 'text-emerald-500 bg-emerald-50 dark:bg-emerald-950/10 border-emerald-100 dark:border-emerald-950/20' },
+    {
+      label: 'Total Tasks',
+      value: total,
+      icon: ClipboardList,
+      className: 'bg-surface-sunken text-textSecondary border-border',
+      style: {
+        backgroundColor: 'var(--color-surface-sunken)',
+        color: 'var(--color-text-muted)',
+        borderColor: 'var(--color-border)',
+      }
+    },
+    {
+      label: 'To Do',
+      value: todo,
+      icon: Clock,
+      className: 'bg-warning-bg text-warning border-warning-border',
+      style: {
+        backgroundColor: 'var(--color-warning-bg)',
+        color: 'var(--color-warning)',
+        borderColor: 'var(--color-warning-border)',
+      }
+    },
+    {
+      label: 'In Progress',
+      value: inProgress,
+      icon: Activity,
+      className: 'bg-info-bg text-info border-info-border',
+      style: {
+        backgroundColor: 'var(--color-info-bg)',
+        color: 'var(--color-info)',
+        borderColor: 'var(--color-info-border)',
+      }
+    },
+    {
+      label: 'Completed',
+      value: completed,
+      icon: CheckCircle,
+      className: 'bg-success-bg text-success border-success-border',
+      style: {
+        backgroundColor: 'var(--color-success-bg)',
+        color: 'var(--color-success)',
+        borderColor: 'var(--color-success-border)',
+      }
+    },
   ];
 
   return (
@@ -25,14 +65,17 @@ export default function AnalyticsSummary({ tasks }) {
           return (
             <div
               key={c.label}
-              className="bg-white dark:bg-[#111827] rounded-xl border border-gray-200/50 dark:border-gray-800/80 p-4 shadow-sm flex items-center gap-3.5 hover:scale-[1.01] transition-transform duration-200"
+              className="bg-surface rounded-xl border border-border p-4 shadow-card flex items-center gap-3.5 hover:scale-[1.01] transition-transform duration-200"
             >
-              <div className={`p-2.5 rounded-lg border border-transparent ${c.color}`}>
+              <div
+                className={`p-2.5 rounded-lg border ${c.className}`}
+                style={c.style}
+              >
                 <Icon size={18} />
               </div>
               <div>
-                <p className="text-[10px] font-bold text-[#64748b] dark:text-gray-400 uppercase tracking-wider">{c.label}</p>
-                <p className="text-xl font-extrabold text-gray-900 dark:text-white mt-0.5">{c.value}</p>
+                <p className="text-[10px] font-bold text-textSecondary uppercase tracking-wider">{c.label}</p>
+                <p className="text-xl font-extrabold text-textPrimary mt-0.5">{c.value}</p>
               </div>
             </div>
           );
@@ -40,21 +83,27 @@ export default function AnalyticsSummary({ tasks }) {
       </div>
 
       {/* Completion Rate Meter */}
-      <div className="bg-white dark:bg-[#111827] rounded-xl border border-gray-200/50 dark:border-gray-800/80 p-5 shadow-sm">
+      <div className="bg-surface rounded-xl border border-border p-5 shadow-card">
         <div className="flex items-center justify-between gap-4 mb-2">
-          <span className="text-xs font-bold text-[#64748b] dark:text-gray-400 uppercase tracking-wider">
+          <span className="text-xs font-bold text-textSecondary uppercase tracking-wider">
             Workspace Completion Rate
           </span>
-          <span className="text-sm font-black text-[#ef2b2d] dark:text-red-400">
+          <span
+            className="text-sm font-black text-primary"
+            style={{ color: 'var(--color-primary)' }}
+          >
             {rate}%
           </span>
         </div>
         
         {/* Progress Bar Container */}
-        <div className="w-full h-2.5 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+        <div className="w-full h-2.5 bg-surface-sunken rounded-full overflow-hidden border border-border">
           <div
-            className="h-full bg-gradient-to-r from-[#ef2b2d] to-red-500 rounded-full transition-all duration-500 ease-out"
-            style={{ width: `${rate}%` }}
+            className="h-full bg-primary rounded-full transition-all duration-500 ease-out"
+            style={{
+              width: `${rate}%`,
+              backgroundColor: 'var(--color-primary)',
+            }}
           />
         </div>
       </div>

@@ -32,17 +32,17 @@ export default function DeadlinesPanel({ tasks }) {
   };
 
   return (
-    <div className="bg-white dark:bg-[#111827] rounded-xl border border-gray-200/50 dark:border-gray-800/80 p-5 shadow-sm space-y-4">
-      <div className="border-b border-gray-150 dark:border-gray-800/80 pb-3">
-        <h3 className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
-          <Calendar size={14} className="text-[#ef2b2d]" />
+    <div className="bg-surface rounded-xl border border-border p-5 shadow-card space-y-4">
+      <div className="border-b border-border pb-3">
+        <h3 className="text-xs font-bold text-textPrimary uppercase tracking-wider flex items-center gap-1.5">
+          <Calendar size={14} className="text-primary" />
           Upcoming Deadlines
         </h3>
       </div>
 
       {sortedTasks.length === 0 ? (
         <div className="text-center py-6">
-          <p className="text-xs font-semibold text-gray-400">No active task deadlines</p>
+          <p className="text-xs font-semibold text-textSubtle">No active task deadlines</p>
         </div>
       ) : (
         <div className="space-y-3 max-h-[260px] overflow-y-auto pr-1 hide-scrollbar">
@@ -51,13 +51,13 @@ export default function DeadlinesPanel({ tasks }) {
             return (
               <div
                 key={t._id}
-                className="p-3.5 rounded-lg border border-gray-100 dark:border-gray-800/60 bg-gray-50/20 dark:bg-gray-900/10 hover:border-gray-200 dark:hover:border-gray-700/60 transition-all flex items-center justify-between gap-4"
+                className="p-3.5 rounded-lg border border-border bg-surface-sunken/40 hover:border-control-border transition-all flex items-center justify-between gap-4"
               >
                 <div className="min-w-0">
-                  <p className="text-xs font-bold text-gray-800 dark:text-gray-200 truncate">
+                  <p className="text-xs font-bold text-textPrimary truncate">
                     {t.title}
                   </p>
-                  <p className="text-[10px] font-semibold text-[#64748b] dark:text-gray-450 mt-1">
+                  <p className="text-[10px] font-semibold text-textSubtle mt-1">
                     Due {new Date(t.dueDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                   </p>
                 </div>

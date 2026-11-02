@@ -11,22 +11,31 @@ export default function Button({
   onClick,
   className = '',
   icon: Icon,
+  style = {},
   ...props
 }) {
-  const baseStyle = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#ef2b2d]/50 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyle = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 disabled:opacity-50 disabled:cursor-not-allowed select-none';
 
   const variants = {
-    primary: 'bg-[#ef2b2d] text-white hover:bg-[#ef2b2d]/90 shadow-md hover:shadow-lg active:scale-[0.98]',
-    secondary: 'bg-[#1f2937]/10 dark:bg-white/10 text-[#64748b] dark:text-gray-300 hover:bg-[#1f2937]/20 dark:hover:bg-white/20 hover:text-gray-900 dark:hover:text-white',
-    outline: 'border border-gray-300 dark:border-gray-700 bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#111827]',
-    danger: 'bg-red-600 text-white hover:bg-red-700 hover:shadow-md active:scale-[0.98]',
-    ghost: 'bg-transparent text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white',
+    primary: 'bg-primary text-white hover:bg-primary-hover shadow-sm hover:shadow active:scale-[0.98]',
+    secondary: 'bg-surface-sunken text-textPrimary hover:bg-surface border border-border hover:border-control-border',
+    outline: 'border border-control-border bg-transparent text-textPrimary hover:bg-surface-sunken',
+    danger: 'bg-error text-white hover:bg-error/90 shadow-sm active:scale-[0.98]',
+    ghost: 'bg-transparent text-textSecondary hover:bg-surface-sunken hover:text-textPrimary',
   };
 
   const sizes = {
-    sm: 'px-3 py-1.5 text-sm gap-1.5',
+    sm: 'px-3 py-1.5 text-xs gap-1.5',
     md: 'px-4 py-2 text-sm gap-2',
     lg: 'px-5 py-2.5 text-base gap-2.5',
+  };
+
+  const dynamicStyle = {
+    ...(variant === 'primary' ? {
+      backgroundColor: 'var(--color-primary, #0F766E)',
+      color: '#FFFFFF',
+    } : {}),
+    ...style,
   };
 
   return (
@@ -34,7 +43,8 @@ export default function Button({
       type={type}
       disabled={disabled || isLoading}
       onClick={onClick}
-      className={`${baseStyle} ${variants[variant]} ${sizes[size]} ${className}`}
+      style={dynamicStyle}
+      className={`${baseStyle} ${variants[variant] || variants.primary} ${sizes[size] || sizes.md} ${className}`}
       {...props}
     >
       {isLoading ? (

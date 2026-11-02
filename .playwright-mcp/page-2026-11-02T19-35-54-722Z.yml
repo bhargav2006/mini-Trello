@@ -1,0 +1,102 @@
+- generic [ref=e2]:
+  - status [ref=e65]: Welcome back, admin!
+  - generic [ref=e66]:
+    - navigation [ref=e67]:
+      - generic [ref=e68]:
+        - generic [ref=e69] [cursor=pointer]:
+          - img "KB Logo" [ref=e71]
+          - generic [ref=e72]: KB Task Board
+        - generic [ref=e74]:
+          - link "Dashboard" [ref=e75] [cursor=pointer]:
+            - /url: /dashboard
+          - link "Users" [ref=e81] [cursor=pointer]:
+            - /url: /users
+        - generic [ref=e87]:
+          - button "Toggle theme mode" [ref=e88] [cursor=pointer]
+          - button "A admin" [ref=e93] [cursor=pointer]:
+            - generic [ref=e94]: A
+            - generic [ref=e95]: admin
+    - main [ref=e96]:
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - heading "Workspace Dashboard" [level=1] [ref=e101]
+            - paragraph [ref=e102]:
+              - generic [ref=e103]: Tuesday, 3 November 2026
+              - generic [ref=e104]: •
+              - generic [ref=e105]: Welcome back, admin
+              - generic [ref=e106]: •
+              - generic [ref=e107]: Admin
+          - button "New Task Card" [ref=e108] [cursor=pointer]
+        - generic [ref=e110]:
+          - generic [ref=e111]:
+            - generic [ref=e117]:
+              - paragraph [ref=e118]: Total Tasks
+              - paragraph [ref=e119]: "0"
+            - generic [ref=e125]:
+              - paragraph [ref=e126]: To Do
+              - paragraph [ref=e127]: "0"
+            - generic [ref=e132]:
+              - paragraph [ref=e133]: In Progress
+              - paragraph [ref=e134]: "0"
+            - generic [ref=e140]:
+              - paragraph [ref=e141]: Completed
+              - paragraph [ref=e142]: "0"
+          - generic [ref=e144]:
+            - generic [ref=e145]: Workspace Completion Rate
+            - generic [ref=e146]: 0%
+        - generic [ref=e148]:
+          - generic [ref=e149]:
+            - generic [ref=e151]:
+              - textbox "Search tasks..." [ref=e159]
+              - button "Filters" [ref=e161] [cursor=pointer]
+            - generic [ref=e163]:
+              - generic [ref=e164]:
+                - generic [ref=e165]:
+                  - generic [ref=e166]:
+                    - heading "To Do" [level=3] [ref=e167]
+                    - generic [ref=e168]: "0"
+                  - button "Add task to To Do" [ref=e169] [cursor=pointer]
+                - generic [ref=e172]:
+                  - generic [ref=e173]: 📋
+                  - paragraph [ref=e174]: No tasks pending
+                  - button "+ Add Task" [ref=e175] [cursor=pointer]
+              - generic [ref=e176]:
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - heading "In Progress" [level=3] [ref=e179]
+                    - generic [ref=e180]: "0"
+                  - button "Add task to In Progress" [ref=e181] [cursor=pointer]
+                - generic [ref=e184]:
+                  - generic [ref=e185]: ⚡
+                  - paragraph [ref=e186]: No active tasks
+                  - button "+ Add Task" [ref=e187] [cursor=pointer]
+              - generic [ref=e188]:
+                - generic [ref=e189]:
+                  - generic [ref=e190]:
+                    - heading "Done" [level=3] [ref=e191]
+                    - generic [ref=e192]: "0"
+                  - button "Add task to Done" [ref=e193] [cursor=pointer]
+                - generic [ref=e196]:
+                  - generic [ref=e197]: ✅
+                  - paragraph [ref=e198]: All tasks completed!
+                  - button "+ Add Task" [ref=e199] [cursor=pointer]
+          - generic [ref=e200]:
+            - generic [ref=e201]:
+              - heading "Board Workspace Actions" [level=3] [ref=e202]
+              - button "+ Create Board Task" [ref=e204] [cursor=pointer]
+            - generic [ref=e205]:
+              - heading "Upcoming Deadlines" [level=3] [ref=e207]
+              - paragraph [ref=e211]: No active task deadlines
+            - generic [ref=e212]:
+              - generic [ref=e213]:
+                - heading "Recent Activity" [level=3] [ref=e214]
+                - button "Clear" [ref=e217] [cursor=pointer]
+              - generic [ref=e218]:
+                - generic [ref=e222]:
+                  - paragraph [ref=e223]: Task board environment initialized
+                  - generic [ref=e224]: 22:54
+                - generic [ref=e231]:
+                  - paragraph [ref=e232]: System audit logs verified
+                  - generic [ref=e233]: 23:24
+      - generic [ref=e237]: © 2026 KB Task Board · Powered by Verdant & Obsidian Global Design System.

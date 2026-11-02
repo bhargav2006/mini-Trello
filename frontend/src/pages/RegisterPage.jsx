@@ -77,10 +77,10 @@ export default function RegisterPage() {
   return (
     <AuthLayout>
       <div className="text-center md:text-left mb-6">
-        <h2 className="text-2xl font-black font-display text-gray-900 dark:text-white">
+        <h2 className="text-2xl font-black font-display text-textPrimary">
           Create Account
         </h2>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+        <p className="text-sm text-textSecondary mt-1">
           Join the collaborative digital board workspace
         </p>
       </div>
@@ -160,11 +160,11 @@ export default function RegisterPage() {
         </Button>
       </form>
 
-      <div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+      <div className="mt-6 text-center text-sm text-textSecondary">
         Already have an account?{' '}
         <Link
           to="/login"
-          className="font-bold text-[#ef2b2d] hover:text-[#ef2b2d]/80 hover:underline transition-colors"
+          className="font-bold text-primary hover:text-primary-hover hover:underline transition-colors"
         >
           Sign In here
         </Link>

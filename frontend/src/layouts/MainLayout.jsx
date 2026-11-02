@@ -53,47 +53,73 @@ export default function MainLayout({ children }) {
   const navLinkStyle = ({ isActive }) =>
     `flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border ${
       isActive
-        ? "bg-[#ef2b2d]/10 text-[#ef2b2d] border-[#ef2b2d]/25 dark:bg-[#ef2b2d]/20 dark:border-[#ef2b2d]/30"
-        : "text-gray-600 dark:text-gray-400 hover:text-[#ef2b2d] hover:bg-[#ef2b2d]/5 dark:hover:bg-[#ef2b2d]/10 hover:border-transparent border-transparent"
+        ? "bg-primary-container text-on-primary-container border-primary/25 font-bold shadow-sm"
+        : "text-textSecondary hover:text-textPrimary hover:bg-surface-sunken border-transparent"
     }`;
 
   const mobileNavLinkStyle = ({ isActive }) =>
     `flex items-center gap-3 px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200 border ${
       isActive
-        ? "bg-[#ef2b2d]/10 text-[#ef2b2d] border-[#ef2b2d]/25 dark:bg-[#ef2b2d]/20 dark:border-[#ef2b2d]/30"
-        : "text-gray-600 dark:text-gray-450 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-[#ef2b2d] border-transparent"
+        ? "bg-primary-container text-on-primary-container border-primary/25 font-bold shadow-sm"
+        : "text-textSecondary hover:bg-surface-sunken hover:text-textPrimary border-transparent"
     }`;
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] dark:bg-[#0a0a0a] text-gray-900 dark:text-gray-150 transition-colors duration-300">
-      {/* Immersive radial glows */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#ef2b2d]/5 rounded-full blur-[100px] pointer-events-none" />
+    <div className="min-h-screen bg-bg text-textPrimary transition-colors duration-300">
+      {/* Immersive radial glow */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Floating Header */}
-      <nav className="sticky top-0 z-40 w-full bg-white/70 dark:bg-[#111827]/70 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/40">
+      <nav className="sticky top-0 z-40 w-full bg-surface/85 backdrop-blur-md border-b border-border">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-          {/* Logo Section */}
+          {/* Logo Section with Circular Personal Logo */}
           <div
             onClick={() => navigate("/")}
             className="flex items-center gap-2.5 shrink-0 cursor-pointer group">
-            <div className="w-9 h-9 rounded-lg bg-[#ef2b2d] flex items-center justify-center font-display font-black text-white shadow-[0_0_15px_rgba(239,43,45,0.3)] transition-transform duration-300 group-hover:scale-105">
-              KB
+            <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 border border-border shadow-sm group-hover:scale-105 transition-transform duration-200">
+              <img
+                src="/assets/bhargav-kb-logo-circular.png"
+                alt="KB Logo"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
-              <span className="font-extrabold tracking-tight text-base font-display text-gray-900 dark:text-white">
-                <span className="text-[#ef2b2d] font-normal">KB</span>
+              <span className="font-extrabold tracking-tight text-base font-display text-textPrimary">
+                <span className="text-primary font-bold">KB</span> <span className="font-semibold">Task Board</span>
               </span>
             </div>
           </div>
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-1.5">
-            <NavLink to="/dashboard" className={navLinkStyle}>
+            <NavLink
+              to="/dashboard"
+              className={navLinkStyle}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      backgroundColor: 'var(--color-primary-container)',
+                      color: 'var(--color-on-primary-container)',
+                      borderColor: 'rgba(66, 148, 106, 0.4)',
+                    }
+                  : {}
+              }>
               <LayoutDashboard size={16} />
               Dashboard
             </NavLink>
             {isAdmin && (
-              <NavLink to="/users" className={navLinkStyle}>
+              <NavLink
+                to="/users"
+                className={navLinkStyle}
+                style={({ isActive }) =>
+                  isActive
+                    ? {
+                        backgroundColor: 'var(--color-primary-container)',
+                        color: 'var(--color-on-primary-container)',
+                        borderColor: 'rgba(66, 148, 106, 0.4)',
+                      }
+                    : {}
+                }>
                 <Users size={16} />
                 Users
               </NavLink>
@@ -102,41 +128,46 @@ export default function MainLayout({ children }) {
 
           {/* Right Action Menu */}
           <div className="flex items-center gap-3">
-            <ThemeToggle className="shadow-sm border border-gray-200/50 dark:border-gray-800/40 bg-white/50 dark:bg-gray-900/50" />
+            <ThemeToggle />
 
             {/* Profile Dropdown */}
             {user && (
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setDropdownOpen((prev) => !prev)}
-                  className="flex items-center gap-1.5 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800/80 transition-all border border-transparent hover:border-gray-200/40 dark:hover:border-gray-800/40">
-                  <div className="w-8 h-8 rounded-full bg-[#ef2b2d] text-white flex items-center justify-center text-xs font-bold shadow-md">
+                  className="flex items-center gap-1.5 p-1 rounded-lg hover:bg-surface-sunken transition-all border border-transparent hover:border-border">
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-sm"
+                    style={{
+                      backgroundColor: 'var(--color-primary, #0F766E)',
+                      color: '#FFFFFF',
+                    }}>
                     {getInitials(user.name)}
                   </div>
-                  <span className="hidden sm:inline text-xs font-bold text-gray-700 dark:text-gray-300 ml-1">
+                  <span className="hidden sm:inline text-xs font-bold text-textPrimary ml-1">
                     {user.name}
                   </span>
                 </button>
 
                 {/* Dropdown Menu */}
                 {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-[#111827] rounded-xl border border-gray-200/60 dark:border-gray-800/80 shadow-2xl overflow-hidden animate-fade-in z-50">
-                    <div className="px-5 py-4 border-b border-gray-100 dark:border-gray-800/80">
-                      <p className="text-[10px] font-bold tracking-wider text-[#64748b] dark:text-gray-400 uppercase">
+                  <div className="absolute right-0 mt-2 w-64 bg-surface rounded-xl border border-border shadow-popover overflow-hidden animate-fade-in z-50">
+                    <div className="px-5 py-4 border-b border-border">
+                      <p className="text-[10px] font-bold tracking-wider text-textSecondary uppercase">
                         Signed In As
                       </p>
-                      <p className="text-sm font-extrabold text-gray-900 dark:text-white mt-1 truncate">
+                      <p className="text-sm font-extrabold text-textPrimary mt-1 truncate">
                         {user.name}
                       </p>
-                      <p className="text-xs text-[#64748b] dark:text-gray-400 truncate mt-0.5">
+                      <p className="text-xs text-textSecondary truncate mt-0.5">
                         {user.email}
                       </p>
                       <div className="mt-2.5">
                         <span
                           className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold border ${
                             isAdmin
-                              ? "bg-red-50 text-red-700 border-red-200 dark:bg-red-950/20 dark:text-red-400 dark:border-red-900/30"
-                              : "bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-900/40 dark:text-slate-400 dark:border-slate-800/50"
+                              ? "bg-primary-container text-on-primary-container border-primary/20"
+                              : "bg-surface-sunken text-textSecondary border-border"
                           }`}>
                           {isAdmin ? <ShieldCheck size={11} /> : null}
                           {user.role}
@@ -150,16 +181,16 @@ export default function MainLayout({ children }) {
                           navigate("/profile");
                           setDropdownOpen(false);
                         }}
-                        className="w-full flex items-center gap-2.5 px-5 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#1f2937]/50 hover:text-[#ef2b2d] dark:hover:text-white transition-colors">
-                        <UserSquare2 size={16} className="text-gray-400" />
+                        className="w-full flex items-center gap-2.5 px-5 py-2.5 text-sm text-textPrimary hover:bg-surface-sunken hover:text-primary transition-colors">
+                        <UserSquare2 size={16} className="text-textSecondary" />
                         Profile Settings
                       </button>
                     </div>
 
-                    <div className="border-t border-gray-150 dark:border-gray-800/80 py-1">
+                    <div className="border-t border-border py-1">
                       <button
                         onClick={handleLogout}
-                        className="w-full flex items-center gap-2.5 px-5 py-2.5 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors">
+                        className="w-full flex items-center gap-2.5 px-5 py-2.5 text-sm text-error hover:bg-error-bg transition-colors">
                         <LogOut size={16} />
                         Sign Out
                       </button>
@@ -172,7 +203,7 @@ export default function MainLayout({ children }) {
             {/* Mobile Menu Toggle Button */}
             <button
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800">
+              className="md:hidden p-2 rounded-lg text-textSecondary hover:bg-surface-sunken">
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
@@ -180,7 +211,7 @@ export default function MainLayout({ children }) {
 
         {/* Mobile Navigation Menu Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200/50 dark:border-gray-800/40 bg-white dark:bg-[#111827] px-4 py-4 space-y-1.5 shadow-lg">
+          <div className="md:hidden border-t border-border bg-surface px-4 py-4 space-y-1.5 shadow-popover">
             <NavLink
               to="/dashboard"
               className={mobileNavLinkStyle}
@@ -209,7 +240,7 @@ export default function MainLayout({ children }) {
                 setMobileMenuOpen(false);
                 handleLogout();
               }}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-base font-semibold text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors">
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-base font-semibold text-error hover:bg-error-bg transition-colors">
               <LogOut size={18} />
               Sign Out
             </button>
@@ -222,8 +253,8 @@ export default function MainLayout({ children }) {
         <div className="animate-fade-in flex-1">{children}</div>
 
         {/* Footer */}
-        <footer className="mt-12 pt-6 border-t border-gray-200/50 dark:border-gray-800/40 text-center text-xs text-[#64748b] dark:text-gray-400 font-semibold shrink-0">
-          © 2026 All rights reserved.
+        <footer className="mt-12 pt-6 border-t border-border text-center text-xs text-textSubtle font-semibold shrink-0">
+          © 2026 KB Task Board · Powered by Verdant & Obsidian Global Design System.
         </footer>
       </main>
     </div>

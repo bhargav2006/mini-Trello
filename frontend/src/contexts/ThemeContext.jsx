@@ -15,12 +15,16 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     const root = document.documentElement;
+    root.setAttribute("data-theme", theme);
+    root.dataset.theme = theme;
     if (theme === "dark") {
       root.classList.add("dark");
     } else {
       root.classList.remove("dark");
     }
     localStorage.setItem("mini_trello_theme", theme);
+    window.dispatchEvent(new CustomEvent("themechange", { detail: { theme } }));
+    window.dispatchEvent(new CustomEvent("gds-theme-change", { detail: { theme } }));
   }, [theme]);
 
   const toggleTheme = () => {

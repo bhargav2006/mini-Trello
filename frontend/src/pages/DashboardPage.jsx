@@ -117,17 +117,17 @@ export default function DashboardPage() {
     <div className="space-y-8">
       
       {/* 1. Welcome Header Section */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-200/40 dark:border-gray-800/40 pb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-border pb-6">
         <div>
-          <h1 className="text-3xl font-black tracking-tight text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-black tracking-tight text-textPrimary">
             Workspace Dashboard
           </h1>
-          <p className="text-xs font-semibold text-[#64748b] dark:text-gray-400 mt-1 flex items-center gap-1">
+          <p className="text-xs font-semibold text-textSecondary mt-1 flex items-center gap-1">
             <span>{getCurrentDate()}</span>
-            <span className="text-gray-300 dark:text-gray-700">•</span>
+            <span className="text-border">•</span>
             <span>Welcome back, {user?.name}</span>
-            <span className="text-gray-300 dark:text-gray-700">•</span>
-            <Badge variant={isAdmin ? 'red' : 'gray'}>
+            <span className="text-border">•</span>
+            <Badge variant={isAdmin ? 'primary' : 'gray'}>
               {isAdmin ? 'Admin' : 'Member'}
             </Badge>
           </p>
@@ -152,7 +152,7 @@ export default function DashboardPage() {
         <div className="xl:col-span-3 space-y-6">
           
           {/* Filters Bar */}
-          <div className="bg-white dark:bg-[#111827] rounded-xl border border-gray-200/50 dark:border-gray-800/80 p-4 shadow-sm flex flex-col gap-4">
+          <div className="bg-surface rounded-xl border border-border p-4 shadow-card flex flex-col gap-4">
             <div className="flex items-center justify-between gap-4">
               
               {/* Left search */}
@@ -179,7 +179,7 @@ export default function DashboardPage() {
                 {isFiltered && (
                   <button
                     onClick={clearFilters}
-                    className="text-xs font-bold text-red-500 hover:text-red-650 transition-colors uppercase tracking-wider"
+                    className="text-xs font-bold text-error hover:text-error/80 transition-colors uppercase tracking-wider"
                   >
                     Clear
                   </button>
@@ -189,7 +189,7 @@ export default function DashboardPage() {
 
             {/* Expandable Advanced Filters */}
             {showFilters && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-3 border-t border-gray-100 dark:border-gray-800/60 animate-fade-in">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-3 border-t border-border animate-fade-in">
                 <Select
                   label="Priority"
                   value={priority}
@@ -223,9 +223,9 @@ export default function DashboardPage() {
 
           {/* Kanban Board Grid */}
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-32 gap-3 bg-white dark:bg-[#111827]/30 border border-gray-200/50 dark:border-gray-800/80 rounded-2xl">
-              <Loader2 className="animate-spin text-[#ef2b2d] h-9 w-9" />
-              <p className="text-xs font-bold text-gray-500 dark:text-gray-400">Syncing board cards...</p>
+            <div className="flex flex-col items-center justify-center py-32 gap-3 bg-surface border border-border rounded-2xl shadow-card">
+              <Loader2 className="animate-spin text-primary h-9 w-9" />
+              <p className="text-xs font-bold text-textSecondary">Syncing board cards...</p>
             </div>
           ) : (
             <div className="flex gap-6 overflow-x-auto pb-4 hide-scrollbar">
@@ -272,8 +272,8 @@ export default function DashboardPage() {
         <div className="xl:col-span-1 space-y-6">
           
           {/* Quick Actions Panel */}
-          <div className="bg-white dark:bg-[#111827] rounded-xl border border-gray-200/50 dark:border-gray-800/80 p-5 shadow-sm space-y-3">
-            <h3 className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider">
+          <div className="bg-surface rounded-xl border border-border p-5 shadow-card space-y-3">
+            <h3 className="text-xs font-bold text-textPrimary uppercase tracking-wider">
               Board Workspace Actions
             </h3>
             <div className="grid grid-cols-1 gap-2 pt-1">
@@ -314,20 +314,20 @@ export default function DashboardPage() {
       >
         <div className="space-y-4">
           <div className="flex items-start gap-4">
-            <div className="p-3 rounded-lg bg-red-50 dark:bg-red-950/30 text-red-650 shrink-0">
+            <div className="p-3 rounded-lg bg-error-bg text-error shrink-0 border border-error-border">
               <AlertTriangle size={20} />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-gray-900 dark:text-white">
+              <h4 className="text-sm font-bold text-textPrimary">
                 Delete "{taskToDelete?.title}"?
               </h4>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
+              <p className="text-xs text-textSecondary mt-1 leading-relaxed">
                 This action is permanent and will remove this card immediately from all board members. This cannot be undone.
               </p>
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-gray-800/80 mt-6">
+          <div className="flex justify-end gap-3 pt-4 border-t border-border mt-6">
             <Button variant="secondary" onClick={() => setDeleteConfirmOpen(false)}>
               Cancel
             </Button>

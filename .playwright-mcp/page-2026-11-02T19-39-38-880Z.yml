@@ -1,0 +1,38 @@
+- generic [ref=f3e3]:
+  - button "Toggle theme mode" [ref=f3e5] [cursor=pointer]
+  - generic [ref=f3e9]:
+    - generic [ref=f3e14]:
+      - img "KB Logo" [ref=f3e16]
+      - generic [ref=f3e17]: KB Task Board
+    - generic [ref=f3e18]:
+      - heading "Build Your Workspace" [level=1] [ref=f3e19]:
+        - text: Build Your
+        - generic [ref=f3e20]: Workspace
+      - paragraph [ref=f3e21]: Collaborate, organize, and deliver work with a clean real-time task board built for modern teams.
+      - generic [ref=f3e22]:
+        - generic [ref=f3e23]:
+          - paragraph [ref=f3e24]: Speed
+          - paragraph [ref=f3e25]: Real-time
+        - generic [ref=f3e26]:
+          - paragraph [ref=f3e27]: Sync
+          - paragraph [ref=f3e28]: Instant
+        - generic [ref=f3e29]:
+          - paragraph [ref=f3e30]: Design
+          - paragraph [ref=f3e31]: Verdant
+    - generic [ref=f3e32]: © 2026 KB Task Board. All rights reserved.
+  - generic [ref=f3e34]:
+    - generic [ref=f3e35]:
+      - heading "Sign In" [level=2] [ref=f3e36]
+      - paragraph [ref=f3e37]: Access your digital board workspace to sync tasks
+    - generic [ref=f3e38]:
+      - generic [ref=f3e39]:
+        - generic [ref=f3e40]: Email Address *
+        - textbox "email@company.com" [ref=f3e46]
+      - generic [ref=f3e47]:
+        - generic [ref=f3e48]: Password *
+        - textbox "••••••••" [ref=f3e54]
+      - button "Sign In" [ref=f3e55] [cursor=pointer]
+    - generic [ref=f3e59]:
+      - text: Don't have an account?
+      - link "Register here" [ref=f3e60] [cursor=pointer]:
+        - /url: /register

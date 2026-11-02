@@ -5,22 +5,82 @@ export default {
   theme: {
     extend: {
       colors: {
+        bg: 'var(--color-bg)',
+        surface: {
+          DEFAULT: 'var(--color-surface)',
+          raised: 'var(--color-surface-raised)',
+          sunken: 'var(--color-surface-sunken)',
+        },
+        primary: {
+          DEFAULT: 'var(--color-primary)',
+          hover: 'var(--color-primary-hover)',
+          active: 'var(--color-primary-active)',
+          container: 'var(--color-primary-container)',
+          'on-container': 'var(--color-on-primary-container)',
+        },
+        'primary-container': 'var(--color-primary-container)',
+        'on-primary-container': 'var(--color-on-primary-container)',
+        secondary: {
+          DEFAULT: 'var(--color-secondary)',
+          hover: 'var(--color-secondary-hover)',
+          container: 'var(--color-secondary-container)',
+          'on-container': 'var(--color-on-secondary-container)',
+        },
+        'secondary-container': 'var(--color-secondary-container)',
+        'on-secondary-container': 'var(--color-on-secondary-container)',
+        tertiary: {
+          DEFAULT: 'var(--color-tertiary)',
+          hover: 'var(--color-tertiary-hover)',
+          container: 'var(--color-tertiary-container)',
+          'on-container': 'var(--color-on-tertiary-container)',
+        },
+        'tertiary-container': 'var(--color-tertiary-container)',
+        'on-tertiary-container': 'var(--color-on-tertiary-container)',
+        textPrimary: 'var(--color-text)',
+        textSecondary: 'var(--color-text-muted)',
+        textSubtle: 'var(--color-text-subtle)',
+        border: {
+          DEFAULT: 'var(--color-border)',
+          control: 'var(--color-control-border)',
+          divider: 'var(--color-divider)',
+        },
+        success: {
+          DEFAULT: 'var(--color-success)',
+          bg: 'var(--color-success-bg)',
+          border: 'var(--color-success-border)',
+        },
+        warning: {
+          DEFAULT: 'var(--color-warning)',
+          bg: 'var(--color-warning-bg)',
+          border: 'var(--color-warning-border)',
+        },
+        error: {
+          DEFAULT: 'var(--color-error)',
+          bg: 'var(--color-error-bg)',
+          border: 'var(--color-error-border)',
+        },
+        info: {
+          DEFAULT: 'var(--color-info)',
+          bg: 'var(--color-info-bg)',
+          border: 'var(--color-info-border)',
+        },
+        overlay: 'var(--color-overlay)',
         brand: {
-          red: '#ef2b2d',
-          grey: '#64748b',
-          success: '#22c55e',
-          warning: '#f59e0b',
-          error: '#ef4444',
+          red: 'var(--color-primary)',
+          grey: 'var(--color-text-muted)',
+          success: 'var(--color-success)',
+          warning: 'var(--color-warning)',
+          error: 'var(--color-error)',
         },
         dark: {
-          bg: '#0a0a0a',
-          surface: '#111827',
-          card: '#1f2937',
+          bg: 'var(--color-bg)',
+          surface: 'var(--color-surface)',
+          card: 'var(--color-surface-raised)',
         },
         light: {
-          bg: '#ffffff',
-          surface: '#f8fafc',
-          card: '#ffffff',
+          bg: 'var(--color-bg)',
+          surface: 'var(--color-surface)',
+          card: 'var(--color-surface-raised)',
         }
       },
       fontFamily: {
@@ -45,11 +105,11 @@ export default {
         }
       },
       boxShadow: {
-        'premium': '0 4px 20px -2px rgba(239, 43, 45, 0.08), 0 2px 10px -4px rgba(0, 0, 0, 0.04)',
-        'premium-hover': '0 12px 30px -4px rgba(239, 43, 45, 0.15), 0 4px 15px -4px rgba(0, 0, 0, 0.08)',
-        'premium-dark': '0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 10px -4px rgba(239, 43, 45, 0.05)',
-        'premium-dark-hover': '0 16px 36px -4px rgba(0, 0, 0, 0.75), 0 4px 20px -4px rgba(239, 43, 45, 0.15)',
-        'neon': '0 0 15px rgba(239, 43, 45, 0.5)',
+        'premium': 'var(--shadow-card)',
+        'premium-hover': 'var(--shadow-popover)',
+        'premium-dark': 'var(--shadow-card)',
+        'premium-dark-hover': 'var(--shadow-popover)',
+        'neon': '0 0 16px var(--ambient-glow-1)',
       }
     },
   },

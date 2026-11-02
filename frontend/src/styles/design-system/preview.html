@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verdant & Obsidian Global Design System — Showcase & Audit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="./tokens.css" />
+  <link rel="stylesheet" href="./themes.css" />
+  <link rel="stylesheet" href="./components.css" />
+  
+  <style>
+    body {
+      margin: 0;
+      padding: var(--gds-space-8) var(--gds-space-12);
+      max-width: var(--gds-container-max);
+      margin-inline: auto;
+    }
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--gds-space-8);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: var(--gds-space-10);
+    }
+    .header-title h1 {
+      margin: 0 0 var(--gds-space-2) 0;
+      font-size: var(--gds-text-3xl);
+      letter-spacing: -0.03em;
+    }
+    .header-title p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: var(--gds-text-base);
+    }
+    .section-title {
+      font-size: var(--gds-text-2xl);
+      font-weight: var(--gds-weight-bold);
+      margin: var(--gds-space-12) 0 var(--gds-space-6) 0;
+      letter-spacing: -0.02em;
+      border-bottom: 1px solid var(--color-divider);
+      padding-bottom: var(--gds-space-3);
+    }
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--gds-space-4);
+    }
+    .swatch-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--gds-radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .swatch-color {
+      height: 80px;
+      width: 100%;
+    }
+    .swatch-meta {
+      padding: var(--gds-space-3);
+      font-family: var(--gds-font-mono);
+      font-size: var(--gds-text-xs);
+    }
+    .swatch-name {
+      font-weight: var(--gds-weight-bold);
+      margin-bottom: 2px;
+      font-family: var(--gds-font-sans);
+      font-size: var(--gds-text-sm);
+    }
+    .component-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--gds-space-4);
+      align-items: center;
+      margin-bottom: var(--gds-space-6);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gds-space-6);
+    }
+    @media (max-width: 768px) {
+      body { padding: var(--gds-space-4); }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header-bar">
+    <div class="header-title">
+      <h1>Verdant & Obsidian Global Design System</h1>
+      <p>Interactive Design Token & Component Showcase</p>
+    </div>
+    <div>
+      <button id="themeToggleBtn" class="gds-btn gds-btn-secondary" onclick="GDSTheme.toggleTheme()">
+        🌙 Switch to Light Theme
+      </button>
+    </div>
+  </header>
+
+  <h2 class="section-title">1. Foundation Colors & Surfaces</h2>
+  <div class="swatch-grid">
+    <div class="swatch-card">
+      <div class="swatch-color" style="background-color: var(--color-bg); border-bottom: 1px solid var(--color-border);"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Background Canvas</div>
+        <div>var(--color-bg)</div>
+      </div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-color" style="background-color: var(--color-surface); border-bottom: 1px solid var(--color-border);"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Card Surface</div>
+        <div>var(--color-surface)</div>
+      </div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-color" style="background-color: var(--color-surface-raised); border-bottom: 1px solid var(--color-border);"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Raised Surface</div>
+        <div>var(--color-surface-raised)</div>
+      </div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-color" style="background-color: var(--color-surface-sunken); border-bottom: 1px solid var(--color-border);"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Sunken Surface</div>
+        <div>var(--color-surface-sunken)</div>
+      </div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-color" style="background-color: var(--color-primary);"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Brand Primary</div>
+        <div>var(--color-primary)</div>
+      </div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-color" style="background-color: var(--color-secondary);"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Brand Secondary</div>
+        <div>var(--color-secondary)</div>
+      </div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-color" style="background-color: var(--color-tertiary);"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Brand Tertiary (Gold)</div>
+        <div>var(--color-tertiary)</div>
+      </div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-color" style="background-color: var(--color-border);"></div>
+      <div class="swatch-meta">
+        <div class="swatch-name">Border Subtle</div>
+        <div>var(--color-border)</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">2. Hero Heading Gradient & Badges</h2>
+  <div class="gds-card" style="margin-bottom: var(--gds-space-6);">
+    <div class="gds-hero-badge">
+      <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); display: inline-block;"></span>
+      Active Engineering Portfolio
+    </div>
+    <h1 class="gds-hero-heading" style="margin: 0 0 var(--gds-space-2) 0;">
+      Hi, I'm <span class="gradient-text">Katakam Bhargav</span>
+    </h1>
+    <p class="gds-hero-desc">
+      Production-ready Full Stack Developer with verified expertise in Java Spring Boot REST architectures, AWS cloud integrations, and MERN ecosystems.
+    </p>
+    <div class="component-row" style="margin: 0;">
+      <a href="#projects" class="gds-btn gds-btn-primary">View Projects &rarr;</a>
+      <a href="#contact" class="gds-btn gds-btn-secondary">Get In Touch</a>
+      <a href="#github" class="gds-btn gds-btn-ghost">Source Code</a>
+    </div>
+  </div>
+
+  <h2 class="section-title">3. Interactive Buttons & State Variants</h2>
+  <div class="component-row">
+    <button class="gds-btn gds-btn-primary">Primary Action</button>
+    <button class="gds-btn gds-btn-secondary">Secondary Action</button>
+    <button class="gds-btn gds-btn-ghost">Ghost Button</button>
+    <button class="gds-btn gds-btn-destructive">Destructive Action</button>
+    <button class="gds-btn gds-btn-primary" disabled>Disabled Button</button>
+  </div>
+
+  <h2 class="section-title">4. Form Inputs & Control Borders</h2>
+  <div class="grid-2">
+    <div>
+      <label style="display: block; font-size: var(--gds-text-sm); font-weight: var(--gds-weight-medium); margin-bottom: var(--gds-space-2);">Full Name</label>
+      <input type="text" class="gds-input" placeholder="e.g. Katakam Bhargav" value="Katakam Bhargav" />
+    </div>
+    <div>
+      <label style="display: block; font-size: var(--gds-text-sm); font-weight: var(--gds-weight-medium); margin-bottom: var(--gds-space-2);">Email Address</label>
+      <input type="email" class="gds-input" placeholder="you@domain.com" />
+    </div>
+  </div>
+
+  <h2 class="section-title">5. Project & Skill Cards</h2>
+  <div class="grid-2">
+    <div class="gds-card">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--gds-space-3);">
+        <h3 class="gds-card-title" style="margin: 0;">Enterprise Spring Boot REST Service</h3>
+        <span class="gds-badge gds-badge-gold">AWS Verified</span>
+      </div>
+      <p class="gds-card-desc">
+        Microservices-based backend pipeline featuring resilient JWT authorization, PostgreSQL connection pooling, and AWS ECS deployment.
+      </p>
+      <div style="display: flex; gap: var(--gds-space-2); margin-top: var(--gds-space-4);">
+        <span class="gds-badge gds-badge-primary">Java 17</span>
+        <span class="gds-badge">Spring Boot</span>
+        <span class="gds-badge">PostgreSQL</span>
+      </div>
+    </div>
+
+    <div class="gds-card">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--gds-space-3);">
+        <h3 class="gds-card-title" style="margin: 0;">Real-Time MERN Analytics Dashboard</h3>
+        <span class="gds-badge gds-badge-primary">Full Stack</span>
+      </div>
+      <p class="gds-card-desc">
+        Scalable websocket-driven dashboard tracking API latency, error metrics, and active transaction throughput.
+      </p>
+      <div style="display: flex; gap: var(--gds-space-2); margin-top: var(--gds-space-4);">
+        <span class="gds-badge gds-badge-primary">React</span>
+        <span class="gds-badge">Node.js</span>
+        <span class="gds-badge">MongoDB</span>
+      </div>
+    </div>
+  </div>
+
+  <footer style="margin-top: var(--gds-space-16); padding-top: var(--gds-space-6); border-top: 1px solid var(--color-border); text-align: center; color: var(--color-text-muted); font-size: var(--gds-text-sm);">
+    Verdant & Obsidian Global Design System &bull; Created for Katakam Bhargav
+  </footer>
+
+  <script src="./theme.js"></script>
+  <script>
+    GDSTheme.init();
+    function syncButtonText(theme) {
+      var btn = document.getElementById("themeToggleBtn");
+      if (btn) {
+        btn.textContent = theme === "dark" ? "☀️ Switch to Light Theme" : "🌙 Switch to Dark Theme";
+      }
+    }
+    syncButtonText(GDSTheme.getTheme());
+    GDSTheme.subscribe(syncButtonText);
+  </script>
+</body>
+</html>
+

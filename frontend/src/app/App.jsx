@@ -17,8 +17,13 @@ export default function App() {
             <Toaster
               position="top-right"
               toastOptions={{
-                className: 'bg-white dark:bg-[#111827] text-gray-900 dark:text-gray-150 border border-gray-100 dark:border-gray-800 rounded-xl text-sm font-medium shadow-lg',
+                className: 'bg-surface text-textPrimary border border-border rounded-xl text-sm font-medium shadow-popover',
                 duration: 3500,
+                style: {
+                  background: 'var(--color-surface)',
+                  color: 'var(--color-text)',
+                  border: '1px solid var(--color-border)',
+                }
               }}
             />
 
