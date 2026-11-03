@@ -156,3 +156,32 @@ html.dark {
   background-clip: text;
   filter: drop-shadow(0 4px 20px rgba(66, 148, 106, 0.22));
 }
+
+/* ============================================================
+   3D FLOWING LIGHT RIBBONS CANVAS (Dual Theme & Seamless Masking)
+   ============================================================ */
+.ambient-gradient-wrapper {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+  mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 55%, rgba(0, 0, 0, 0.7) 75%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 55%, rgba(0, 0, 0, 0.7) 75%, transparent 100%);
+}
+
+[data-theme="dark"] .ambient-ribbon-canvas,
+.dark .ambient-ribbon-canvas {
+  filter: drop-shadow(0 0 24px rgba(66, 148, 106, 0.28)) saturate(118%);
+  opacity: 0.98;
+}
+
+[data-theme="light"] .ambient-ribbon-canvas,
+html[data-theme="light"] .ambient-ribbon-canvas {
+  filter: drop-shadow(0 0 18px rgba(34, 120, 80, 0.15)) saturate(108%);
+  opacity: 0.88;
+}

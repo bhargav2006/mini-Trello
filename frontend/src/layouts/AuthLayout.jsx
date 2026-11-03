@@ -1,9 +1,13 @@
 import React from "react";
 import ThemeToggle from "../shared/ThemeToggle";
+import AmbientRibbonBackground from "../shared/AmbientRibbonBackground";
 
 export default function AuthLayout({ children }) {
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-bg text-textPrimary transition-colors duration-300 overflow-hidden relative">
+      {/* 3D Flowing Ambient Ribbon Background Canvas */}
+      <AmbientRibbonBackground />
+
       {/* Background ambient glowing gradients */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />

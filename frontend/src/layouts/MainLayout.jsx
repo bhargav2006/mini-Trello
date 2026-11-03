@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useTheme } from "../contexts/ThemeContext";
 import ThemeToggle from "../shared/ThemeToggle";
+import AmbientRibbonBackground from "../shared/AmbientRibbonBackground";
 import {
   User,
   LogOut,
@@ -65,7 +66,10 @@ export default function MainLayout({ children }) {
     }`;
 
   return (
-    <div className="min-h-screen bg-bg text-textPrimary transition-colors duration-300">
+    <div className="min-h-screen bg-bg text-textPrimary transition-colors duration-300 relative overflow-x-hidden">
+      {/* 3D Flowing Ambient Ribbon Background Canvas */}
+      <AmbientRibbonBackground />
+
       {/* Immersive radial glow */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
